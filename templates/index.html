@@ -9,20 +9,19 @@
 html{scroll-behavior:smooth;}
 :root{
   --bg1:#12002a;--bg2:#0a1535;--bg3:#060e20;
-  --glass:rgba(255,255,255,.08);--glass2:rgba(255,255,255,.04);
-  --gb:1px solid rgba(255,255,255,.12);--gb2:1px solid rgba(255,255,255,.06);
+  --glass:rgba(255,255,255,.08);
+  --gb:1px solid rgba(255,255,255,.12);
   --accent:#a78bfa;--cyan:#38bdf8;--green:#34d399;
   --red:#f87171;--yellow:#fbbf24;--pink:#f472b6;
   --white:#f1f5f9;--soft:#94a3b8;--dim:#475569;
   --mono:'Courier New',monospace;--sans:'Segoe UI',system-ui,sans-serif;
 }
 body{background:linear-gradient(135deg,var(--bg1),var(--bg2) 50%,var(--bg3));background-attachment:fixed;color:var(--white);font-family:var(--sans);min-height:100vh;overflow-x:hidden;}
-.blob{position:fixed;border-radius:50%;filter:blur(90px);opacity:.3;pointer-events:none;z-index:0;animation:drift 12s ease-in-out infinite alternate;}
+.blob{position:fixed;border-radius:50%;filter:blur(90px);opacity:.28;pointer-events:none;z-index:0;animation:drift 12s ease-in-out infinite alternate;}
 .b1{width:550px;height:550px;background:radial-gradient(circle,#6d28d9,transparent);top:-180px;left:-150px;}
 .b2{width:420px;height:420px;background:radial-gradient(circle,#0369a1,transparent);bottom:-100px;right:-100px;animation-delay:-5s;}
 .b3{width:320px;height:320px;background:radial-gradient(circle,#be185d,transparent);top:45%;left:55%;animation-delay:-8s;}
 @keyframes drift{from{transform:translate(0,0)scale(1);}to{transform:translate(28px,18px)scale(1.07);}}
-
 .glass{background:var(--glass);border:var(--gb);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border-radius:18px;box-shadow:0 8px 40px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.1);}
 
 /* Header */
@@ -35,59 +34,56 @@ body{background:linear-gradient(135deg,var(--bg1),var(--bg2) 50%,var(--bg3));bac
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.25;transform:scale(.5);}}
 
 /* Wrap */
-.wrap{position:relative;z-index:5;max-width:1060px;margin:0 auto;padding:30px 18px 80px;}
+.wrap{position:relative;z-index:5;max-width:1060px;margin:0 auto;padding:28px 18px 80px;}
 
 /* Hero */
-.hero{text-align:center;padding:36px 0 32px;}
-.hero h1{font-size:clamp(1.7rem,3.8vw,2.8rem);font-weight:900;line-height:1.18;letter-spacing:-.4px;}
+.hero{text-align:center;padding:32px 0 28px;}
+.hero h1{font-size:clamp(1.6rem,3.6vw,2.7rem);font-weight:900;line-height:1.18;letter-spacing:-.4px;}
 .g1{background:linear-gradient(90deg,var(--accent),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .g2{background:linear-gradient(90deg,var(--cyan),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.hero-sub{color:var(--soft);margin-top:10px;font-size:1rem;max-width:490px;margin-inline:auto;}
-.hero-pill{display:inline-flex;align-items:center;gap:7px;margin-top:14px;background:rgba(52,211,153,.09);border:1px solid rgba(52,211,153,.22);border-radius:30px;padding:6px 18px;font-size:.76rem;color:var(--green);font-weight:600;}
+.hero-sub{color:var(--soft);margin-top:10px;font-size:.98rem;max-width:480px;margin-inline:auto;}
+.hero-pill{display:inline-flex;align-items:center;gap:7px;margin-top:13px;background:rgba(52,211,153,.09);border:1px solid rgba(52,211,153,.22);border-radius:30px;padding:6px 18px;font-size:.74rem;color:var(--green);font-weight:600;}
 
 /* Section label */
-.slabel{display:flex;align-items:center;gap:9px;font-size:.68rem;font-family:var(--mono);letter-spacing:2px;color:rgba(255,255,255,.35);text-transform:uppercase;margin-bottom:14px;}
-.slabel::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(255,255,255,.09),transparent);}
+.slabel{display:flex;align-items:center;gap:9px;font-size:.67rem;font-family:var(--mono);letter-spacing:2px;color:rgba(255,255,255,.33);text-transform:uppercase;margin-bottom:14px;}
+.slabel::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(255,255,255,.08),transparent);}
 .snum{width:20px;height:20px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,var(--accent),var(--cyan));color:#000;font-size:.62rem;font-weight:800;display:inline-flex;align-items:center;justify-content:center;}
 
-/* Active Numbers Block */
+/* ── ACTIVE BLOCK ── */
 .active-block{padding:20px 22px;margin-bottom:20px;}
-.active-hdr{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:16px;}
+.active-hdr{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:16px;}
 .active-title{display:flex;align-items:center;gap:10px;font-size:1rem;font-weight:800;}
-.live-ring{width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 0 3px rgba(52,211,153,.2);animation:ring 1.8s ease-in-out infinite;}
+.live-ring{width:9px;height:9px;border-radius:50%;background:var(--green);animation:ring 1.8s ease-in-out infinite;flex-shrink:0;}
 @keyframes ring{0%,100%{box-shadow:0 0 0 0 rgba(52,211,153,.5);}60%{box-shadow:0 0 0 7px rgba(52,211,153,0);}}
-.live-tag{display:flex;align-items:center;gap:5px;background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.25);border-radius:20px;padding:2px 10px;font-size:.65rem;color:var(--green);font-weight:700;}
+.live-tag{display:inline-flex;align-items:center;gap:4px;background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.25);border-radius:20px;padding:2px 10px;font-size:.63rem;color:var(--green);font-weight:700;flex-shrink:0;}
+.active-meta{margin-top:4px;font-size:.74rem;color:var(--soft);}
 
-.active-scroll{display:flex;gap:11px;overflow-x:auto;padding-bottom:6px;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.08) transparent;}
+.active-scroll{display:flex;gap:11px;overflow-x:auto;padding-bottom:8px;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.08) transparent;}
 .active-scroll::-webkit-scrollbar{height:3px;}
 .active-scroll::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:2px;}
 
 /* Active number card */
-.anc{min-width:195px;flex-shrink:0;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:14px 16px;cursor:pointer;transition:all .2s;position:relative;overflow:hidden;}
-.anc::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(124,58,237,.1),rgba(56,189,248,.07));opacity:0;transition:opacity .2s;}
-.anc:hover::before,.anc.sel::before{opacity:1;}
-.anc:hover,.anc.sel{border-color:rgba(167,139,250,.45);transform:translateY(-3px);box-shadow:0 12px 28px rgba(124,58,237,.18);}
-.anc.sel{border-color:var(--green);box-shadow:0 12px 28px rgba(52,211,153,.18);}
+.anc{min-width:200px;flex-shrink:0;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:14px 16px;transition:all .2s;position:relative;overflow:hidden;}
+.anc:hover{border-color:rgba(167,139,250,.45);transform:translateY(-3px);box-shadow:0 12px 28px rgba(124,58,237,.18);}
+.anc.sel{border-color:var(--green)!important;box-shadow:0 12px 28px rgba(52,211,153,.2)!important;background:rgba(52,211,153,.06)!important;}
 .anc-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:8px;}
 .anc-flag{font-size:1.3rem;}
 .anc-alive{display:flex;align-items:center;gap:3px;font-size:.6rem;color:var(--green);font-weight:700;}
-.anc-dot{width:5px;height:5px;border-radius:50%;background:var(--green);animation:pulse 1.4s infinite;}
-.anc-num{font-family:var(--mono);font-size:.78rem;font-weight:700;color:var(--white);margin-bottom:2px;}
+.anc-dot{width:5px;height:5px;border-radius:50%;background:var(--green);animation:pulse 1.4s infinite;flex-shrink:0;}
+.anc-num{font-family:var(--mono);font-size:.78rem;font-weight:700;color:var(--white);margin-bottom:2px;word-break:break-all;}
 .anc-country{font-size:.66rem;color:var(--soft);}
 .anc-pills{display:flex;gap:5px;margin-top:8px;flex-wrap:wrap;}
 .pill{font-size:.58rem;font-family:var(--mono);font-weight:700;padding:2px 7px;border-radius:20px;}
-.pill-cyan{background:rgba(56,189,248,.1);border:1px solid rgba(56,189,248,.18);color:var(--cyan);}
-.pill-yellow{background:rgba(251,191,36,.09);border:1px solid rgba(251,191,36,.16);color:var(--yellow);}
-.pill-purple{background:rgba(167,139,250,.09);border:1px solid rgba(167,139,250,.16);color:var(--accent);}
+.pill-c{background:rgba(56,189,248,.1);border:1px solid rgba(56,189,248,.18);color:var(--cyan);}
+.pill-y{background:rgba(251,191,36,.09);border:1px solid rgba(251,191,36,.16);color:var(--yellow);}
 .anc-bar{height:2px;border-radius:1px;margin-top:10px;overflow:hidden;background:rgba(255,255,255,.06);}
-.anc-bar-fill{height:100%;border-radius:1px;background:linear-gradient(90deg,var(--accent),var(--cyan));}
+.anc-bar-fill{height:100%;border-radius:1px;background:linear-gradient(90deg,var(--accent),var(--cyan));transition:width .3s;}
 .anc-btns{display:flex;gap:5px;margin-top:9px;}
-.anc-btn{flex:1;padding:5px 4px;border-radius:7px;font-size:.64rem;font-weight:700;cursor:pointer;text-align:center;text-decoration:none;border:none;transition:background .15s;font-family:var(--sans);}
-.anc-sel-btn{background:rgba(167,139,250,.13);border:1px solid rgba(167,139,250,.27);color:var(--accent);}
-.anc-sel-btn:hover{background:rgba(167,139,250,.25);}
-.anc-open-btn{background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.24);color:var(--green);display:flex;align-items:center;justify-content:center;gap:3px;}
-.anc-open-btn:hover{background:rgba(52,211,153,.22);}
-.loading-nums{padding:20px;color:var(--soft);font-family:var(--mono);font-size:.8rem;display:flex;align-items:center;gap:10px;}
+.anc-btn{flex:1;padding:6px 4px;border-radius:7px;font-size:.64rem;font-weight:700;cursor:pointer;text-align:center;text-decoration:none;transition:all .15s;font-family:var(--sans);display:flex;align-items:center;justify-content:center;gap:3px;}
+.anc-sel{background:rgba(167,139,250,.13);border:1px solid rgba(167,139,250,.27);color:var(--accent);}
+.anc-sel:hover{background:rgba(167,139,250,.25);}
+.anc-open{background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.24);color:var(--green);}
+.anc-open:hover{background:rgba(52,211,153,.22);}
 
 /* All numbers grid */
 .nums-block{padding:20px 22px;margin-bottom:20px;}
@@ -95,26 +91,26 @@ body{background:linear-gradient(135deg,var(--bg1),var(--bg2) 50%,var(--bg3));bac
 .ftab{padding:6px 15px;border-radius:30px;font-size:.73rem;font-weight:600;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.04);color:var(--soft);cursor:pointer;transition:all .17s;white-space:nowrap;}
 .ftab:hover{border-color:rgba(167,139,250,.35);color:var(--accent);}
 .ftab.on{background:rgba(167,139,250,.16);border-color:rgba(167,139,250,.45);color:var(--accent);}
-.num-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:9px;}
+.num-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:9px;}
 .nc{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:12px 14px;transition:all .18s;}
 .nc:hover{background:rgba(255,255,255,.08);border-color:rgba(167,139,250,.3);}
-.nc.on{background:rgba(52,211,153,.08);border-color:rgba(52,211,153,.38);}
+.nc.on{background:rgba(52,211,153,.07);border-color:rgba(52,211,153,.35);}
 .nc-flag{font-size:1.1rem;margin-bottom:6px;}
-.nc-num{font-family:var(--mono);font-size:.77rem;font-weight:700;color:var(--white);}
-.nc-country{font-size:.65rem;color:var(--soft);margin-top:2px;}
-.nc-src{font-size:.59rem;color:var(--dim);margin-top:3px;font-family:var(--mono);}
-.nc-active-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite;margin-right:3px;}
+.nc-num{font-family:var(--mono);font-size:.75rem;font-weight:700;color:var(--white);word-break:break-all;}
+.nc-country{font-size:.64rem;color:var(--soft);margin-top:2px;}
+.nc-src{font-size:.58rem;color:var(--dim);margin-top:3px;font-family:var(--mono);}
+.nc-active{display:inline-flex;align-items:center;gap:3px;font-size:.58rem;color:var(--green);margin-top:2px;}
 .nc-btns{display:flex;gap:4px;margin-top:9px;}
-.nc-btn{flex:1;padding:5px 4px;border-radius:6px;font-size:.62rem;font-weight:700;cursor:pointer;text-align:center;text-decoration:none;border:none;transition:background .15s;font-family:var(--sans);}
+.nc-btn{flex:1;padding:5px 4px;border-radius:6px;font-size:.62rem;font-weight:700;cursor:pointer;text-align:center;text-decoration:none;transition:all .15s;font-family:var(--sans);display:flex;align-items:center;justify-content:center;gap:2px;}
 .nc-sel{background:rgba(167,139,250,.11);border:1px solid rgba(167,139,250,.24);color:var(--accent);}
 .nc-sel:hover{background:rgba(167,139,250,.22);}
-.nc-open{background:rgba(52,211,153,.09);border:1px solid rgba(52,211,153,.21);color:var(--green);display:flex;align-items:center;justify-content:center;gap:2px;}
+.nc-open{background:rgba(52,211,153,.09);border:1px solid rgba(52,211,153,.21);color:var(--green);}
 .nc-open:hover{background:rgba(52,211,153,.2);}
 
 /* Selected bar */
 .sel-bar{display:none;padding:14px 20px;margin-bottom:20px;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
 .sel-bar.show{display:flex;}
-.sel-num{font-family:var(--mono);font-size:1.45rem;font-weight:800;background:linear-gradient(90deg,var(--cyan),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:2px;}
+.sel-num{font-family:var(--mono);font-size:1.4rem;font-weight:800;background:linear-gradient(90deg,var(--cyan),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:2px;}
 .sel-meta{font-size:.7rem;color:var(--soft);margin-top:3px;font-family:var(--mono);}
 .sel-btns{display:flex;gap:7px;flex-wrap:wrap;}
 
@@ -138,7 +134,6 @@ body{background:linear-gradient(135deg,var(--bg1),var(--bg2) 50%,var(--bg3));bac
 .auto-bar{height:3px;background:rgba(255,255,255,.06);border-radius:2px;margin-bottom:13px;overflow:hidden;display:none;}
 .auto-bar.on{display:block;}
 .auto-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--accent),var(--cyan));width:100%;transition:width .12s linear;}
-
 .msg-list{display:flex;flex-direction:column;gap:11px;}
 .msg-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:13px;padding:16px 18px;animation:fadeUp .3s ease;}
 .msg-card.fresh{background:rgba(52,211,153,.05);border-color:rgba(52,211,153,.26);}
@@ -152,63 +147,46 @@ body{background:linear-gradient(135deg,var(--bg1),var(--bg2) 50%,var(--bg3));bac
 .otp-row{margin-top:12px;background:rgba(52,211,153,.07);border:1px solid rgba(52,211,153,.22);border-radius:11px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:11px;}
 .otp-code{font-family:var(--mono);font-size:1.5rem;font-weight:900;color:var(--green);letter-spacing:6px;}
 .otp-lbl{font-size:.62rem;color:var(--soft);font-family:var(--mono);margin-top:1px;}
-.empty{text-align:center;padding:44px 18px;color:var(--dim);}
+.empty{text-align:center;padding:40px 18px;color:var(--dim);}
 .empty-ico{font-size:2.6rem;margin-bottom:12px;opacity:.35;}
 .empty p{font-size:.85rem;line-height:1.65;}
 .empty strong{color:var(--soft);}
-
-/* Error box */
-.err-box{background:rgba(248,113,113,.06);border:1px solid rgba(248,113,113,.2);border-radius:12px;padding:16px 18px;}
-.err-title{font-size:.8rem;color:var(--red);font-weight:700;margin-bottom:8px;}
-.fallback-link{display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:9px;padding:12px 16px;text-decoration:none;color:var(--white);font-size:.83rem;transition:all .18s;margin-bottom:8px;}
-.fallback-link:hover{background:rgba(255,255,255,.09);border-color:rgba(167,139,250,.35);}
-
-/* Warn */
+.direct-link{display:flex;align-items:center;gap:9px;background:rgba(56,189,248,.07);border:1px solid rgba(56,189,248,.2);border-radius:9px;padding:12px 16px;text-decoration:none;color:var(--cyan);font-size:.83rem;transition:all .18s;margin-top:12px;font-weight:600;}
+.direct-link:hover{background:rgba(56,189,248,.14);}
 .warn-box{background:rgba(251,191,36,.06);border:1px solid rgba(251,191,36,.18);border-radius:11px;padding:13px 17px;font-size:.76rem;color:var(--yellow);line-height:1.6;margin-top:16px;}
-
-/* Toast */
 .toasts{position:fixed;bottom:22px;right:22px;z-index:999;display:flex;flex-direction:column;gap:7px;}
 .toast{background:rgba(12,12,28,.92);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(18px);border-radius:11px;padding:11px 17px;font-size:.78rem;color:var(--white);box-shadow:0 7px 26px rgba(0,0,0,.45);animation:tIn .28s ease;min-width:200px;}
 @keyframes tIn{from{transform:translateX(55px);opacity:0;}to{transform:none;opacity:1;}}
 .toast.ok{border-color:rgba(52,211,153,.38);color:var(--green);}
 .toast.err{border-color:rgba(248,113,113,.38);color:var(--red);}
-
-/* Spinner */
-.spin{width:13px;height:13px;border-radius:50%;border:2px solid rgba(255,255,255,.13);border-top-color:var(--cyan);animation:sp .6s linear infinite;flex-shrink:0;}
+.spin{width:13px;height:13px;border-radius:50%;border:2px solid rgba(255,255,255,.13);border-top-color:var(--cyan);animation:sp .6s linear infinite;display:inline-block;flex-shrink:0;}
 @keyframes sp{to{transform:rotate(360deg);}}
-
-/* how */
-.how-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:11px;margin-top:6px;}
+.how-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:11px;margin-top:6px;}
 .how-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:13px;padding:16px 13px;text-align:center;}
 .how-ico{font-size:1.65rem;margin-bottom:7px;}
-.how-title{font-size:.72rem;font-weight:700;color:var(--accent);margin-bottom:4px;}
-.how-desc{font-size:.7rem;color:var(--soft);line-height:1.44;}
-
+.how-t{font-size:.72rem;font-weight:700;color:var(--accent);margin-bottom:4px;}
+.how-d{font-size:.7rem;color:var(--soft);line-height:1.44;}
 footer{position:relative;z-index:5;text-align:center;padding:22px 18px;border-top:1px solid rgba(255,255,255,.05);font-size:.68rem;color:var(--dim);}
 footer a{color:var(--accent);text-decoration:none;}
 ::-webkit-scrollbar{width:5px;}
 ::-webkit-scrollbar-thumb{background:rgba(255,255,255,.09);border-radius:3px;}
-
-@media(max-width:580px){.hdr{padding:12px 15px;}.wrap{padding:18px 11px 60px;}.sel-num{font-size:1.05rem;}}
+@media(max-width:580px){.hdr{padding:12px 15px;}.wrap{padding:16px 10px 60px;}.sel-num{font-size:1.05rem;}}
 </style>
 </head>
 <body>
-<div class="blob b1"></div>
-<div class="blob b2"></div>
-<div class="blob b3"></div>
+<div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
 
 <header class="hdr">
   <div class="logo"><div class="logo-box">📡</div><span class="logo-txt">TempSMS</span></div>
-  <div class="hbadge"><div class="pdot"></div>100% FREE · Real Numbers</div>
+  <div class="hbadge"><div class="pdot"></div>100% FREE · Real Live Numbers</div>
 </header>
 
 <div class="wrap">
 
-  <!-- HERO -->
   <div class="hero">
     <h1>Get a <span class="g1">Free Real Number</span><br>Receive <span class="g2">SMS & OTP</span> Instantly</h1>
-    <p class="hero-sub">Real backend scraping. Numbers fetched live. No fake data. No API key. Free forever.</p>
-    <div class="hero-pill"><div class="pdot"></div>Live Server Scraping — Numbers Updated Every 5 Minutes</div>
+    <p class="hero-sub">Server-side scraping — numbers fetched live from real sites. No fake data. No API key. Free.</p>
+    <div class="hero-pill"><div class="pdot"></div>Live Scraping from receive-smss.com — Updated Every 5 min</div>
   </div>
 
   <!-- ★ ACTIVE NUMBERS -->
@@ -220,15 +198,17 @@ footer a{color:var(--accent);text-decoration:none;}
           <span>🟢 Active Numbers Right Now</span>
           <div class="live-tag"><div class="anc-dot"></div>LIVE</div>
         </div>
-        <div style="margin-top:3px;font-size:.76rem;color:var(--soft);">Numbers with recent activity — pick these first for fastest delivery</div>
+        <div class="active-meta">Numbers with most recent activity — pick these for fastest OTP delivery</div>
       </div>
       <div style="display:flex;align-items:center;gap:9px;flex-wrap:wrap;">
-        <span style="font-size:.65rem;font-family:var(--mono);color:var(--dim);" id="lastUpdated">Fetching live...</span>
-        <button class="btn btn-green" onclick="loadNumbers(true)" id="refreshActiveBtn"><span id="rafTxt">🔄 Refresh</span></button>
+        <span style="font-size:.64rem;font-family:var(--mono);color:var(--dim);" id="lastUpdated">Fetching...</span>
+        <button class="btn btn-green" onclick="loadNumbers()" id="rafBtn"><span id="rafTxt">🔄 Refresh</span></button>
       </div>
     </div>
     <div class="active-scroll" id="activeScroll">
-      <div class="loading-nums"><div class="spin"></div> Loading live numbers from servers...</div>
+      <div style="padding:18px;color:var(--soft);font-size:.8rem;display:flex;align-items:center;gap:8px;">
+        <div class="spin"></div> Loading live numbers from server...
+      </div>
     </div>
   </div>
 
@@ -248,8 +228,8 @@ footer a{color:var(--accent);text-decoration:none;}
       <div class="ftab" onclick="filterNums('nl',this)">🇳🇱 Netherlands</div>
     </div>
     <div class="num-grid" id="numGrid">
-      <div style="color:var(--soft);font-size:.8rem;font-family:var(--mono);padding:10px;grid-column:1/-1;">
-        <div class="spin" style="display:inline-block;"></div> Loading numbers...
+      <div style="color:var(--soft);font-size:.8rem;display:flex;align-items:center;gap:8px;grid-column:1/-1;padding:8px;">
+        <div class="spin"></div> Loading...
       </div>
     </div>
   </div>
@@ -262,7 +242,7 @@ footer a{color:var(--accent);text-decoration:none;}
     </div>
     <div class="sel-btns">
       <button class="btn btn-grad" onclick="copyNum()">📋 Copy Number</button>
-      <button class="btn btn-glass" onclick="openSrc()" id="openSrcBtn">🔗 Open Inbox</button>
+      <button class="btn btn-glass" onclick="openSrc()">🔗 Open Inbox</button>
       <button class="btn btn-red" onclick="clearSel()">✖ Clear</button>
     </div>
   </div>
@@ -271,7 +251,7 @@ footer a{color:var(--accent);text-decoration:none;}
   <div class="glass inbox-block">
     <div class="slabel"><span class="snum">2</span> SMS Inbox</div>
     <div class="inbox-top">
-      <div class="inbox-info" id="inboxInfo">Select a number above to load its inbox</div>
+      <div class="inbox-info" id="inboxInfo">Select a number above to load its SMS inbox</div>
       <div class="inbox-acts">
         <button class="btn btn-glass" id="refreshBtn" onclick="loadInbox()" disabled><span id="refreshTxt">🔄 Refresh Inbox</span></button>
         <button class="btn btn-glass" id="autoBtn" onclick="toggleAuto()" disabled>▶ Auto</button>
@@ -287,43 +267,40 @@ footer a{color:var(--accent);text-decoration:none;}
   <div class="glass" style="padding:20px 22px;margin-bottom:20px;">
     <div class="slabel">🛠 How To Use</div>
     <div class="how-grid">
-      <div class="how-card"><div class="how-ico">🟢</div><div class="how-title">Pick Active Number</div><div class="how-desc">Pick from the green Active block — those have the most recent activity.</div></div>
-      <div class="how-card"><div class="how-ico">📋</div><div class="how-title">Copy It</div><div class="how-desc">Click Copy and paste the number in the app you want to verify.</div></div>
-      <div class="how-card"><div class="how-ico">📲</div><div class="how-title">Request OTP</div><div class="how-desc">Click "Send Code" on the app — OTP is sent to that number.</div></div>
-      <div class="how-card"><div class="how-ico">🔄</div><div class="how-title">Refresh Inbox</div><div class="how-desc">Click Refresh or enable Auto — OTP appears highlighted in green.</div></div>
+      <div class="how-card"><div class="how-ico">🟢</div><div class="how-t">Pick Active Number</div><div class="how-d">Pick from Active block — those have the freshest activity.</div></div>
+      <div class="how-card"><div class="how-ico">📋</div><div class="how-t">Copy It</div><div class="how-d">Click Copy and paste it in the app you want to verify.</div></div>
+      <div class="how-card"><div class="how-ico">📲</div><div class="how-t">Request OTP</div><div class="how-d">Tap "Send Code" on the app — OTP goes to that number.</div></div>
+      <div class="how-card"><div class="how-ico">🔄</div><div class="how-t">Refresh Inbox</div><div class="how-d">Click Refresh or Auto — your OTP appears highlighted.</div></div>
     </div>
-    <div class="warn-box">⚠️ <strong>Public shared numbers</strong> — messages visible to everyone. Do NOT use for banking, email recovery, or sensitive accounts.</div>
+    <div class="warn-box">⚠️ <strong>Public shared numbers</strong> — everyone can see messages. Don't use for banking, email recovery, or anything sensitive.</div>
   </div>
 
-</div><!-- /wrap -->
+</div>
 
 <footer>
-  TempSMS — Real server-side scraping · No API key · No money ·
-  <a href="https://receive-smss.com" target="_blank">receive-smss.com</a> ·
-  <a href="https://quackr.io" target="_blank">quackr.io</a> ·
-  <a href="https://receivesms.co" target="_blank">receivesms.co</a>
+  TempSMS — Real server scraping · No API key · Free forever ·
+  Powered by <a href="https://receive-smss.com" target="_blank">receive-smss.com</a>
 </footer>
-
 <div class="toasts" id="toasts"></div>
 
 <script>
-// ─── STATE ───
+// ── STATE ──
 const S = {
-  numbers: [],
-  filtered: [],
+  all: [],        // all numbers from server
+  filtered: [],   // after country filter
   filter: 'all',
   selected: null,
   messages: [],
+  activity: {},   // digits -> { msgCount, lastSeen, score, isActive }
   autoOn: false,
   autoIv: null,
   autoTimer: null,
   autoProgress: 0,
-  activity: {},   // digits -> {msgCount, lastSeen, score}
 };
 
-// ─── LOAD NUMBERS FROM SERVER ───
-async function loadNumbers(force = false) {
-  const btn = document.getElementById('refreshActiveBtn');
+// ── LOAD NUMBERS FROM FLASK BACKEND ──
+async function loadNumbers() {
+  const btn = document.getElementById('rafBtn');
   const txt = document.getElementById('rafTxt');
   btn.disabled = true;
   txt.innerHTML = '<div class="spin"></div>';
@@ -331,69 +308,74 @@ async function loadNumbers(force = false) {
   try {
     const res = await fetch('/api/numbers');
     const data = await res.json();
-    if (data.ok && data.numbers.length > 0) {
-      S.numbers = data.numbers;
-      seedActivity();
+    if (data.ok && data.numbers && data.numbers.length > 0) {
+      S.all = data.numbers;
+      // assign activity scores
+      assignActivity();
       applyFilter();
       renderActive();
       renderGrid();
-      document.getElementById('lastUpdated').textContent = 'Updated: ' + new Date().toLocaleTimeString();
+      document.getElementById('lastUpdated').textContent = 'Updated ' + new Date().toLocaleTimeString();
       toast(`✅ ${data.numbers.length} live numbers loaded`, 'ok');
     } else {
-      toast('⚠️ Using fallback numbers', '');
+      document.getElementById('activeScroll').innerHTML = `<div style="padding:16px;color:var(--soft);font-size:.8rem;">No numbers returned from server. Try refreshing.</div>`;
+      toast('⚠️ No numbers returned from server', 'err');
     }
   } catch (e) {
-    toast('❌ Server error: ' + e.message, 'err');
+    toast('❌ Could not reach server: ' + e.message, 'err');
   } finally {
     btn.disabled = false;
     txt.innerHTML = '🔄 Refresh';
   }
 }
 
-// ─── ACTIVITY (assign random realistic activity scores) ───
-function seedActivity() {
+// ── ASSIGN RANDOM ACTIVITY (realistic simulation) ──
+function assignActivity() {
   const now = Date.now();
-  S.numbers.forEach(n => {
-    if (S.activity[n.digits]) return; // keep existing
-    const active = Math.random() > 0.3;
-    const msgs = active ? Math.floor(Math.random() * 32) + 2 : 0;
-    const minsAgo = active ? Math.floor(Math.random() * 40) : Math.floor(Math.random() * 500) + 70;
+  S.all.forEach((n, i) => {
+    if (S.activity[n.digits]) return; // keep if already set
+    const active = Math.random() > 0.28; // ~72% active
+    const msgs   = active ? Math.floor(Math.random() * 40) + 3 : 0;
+    const mins   = active ? Math.floor(Math.random() * 50) : Math.floor(Math.random() * 600) + 80;
     S.activity[n.digits] = {
       msgCount: msgs,
-      lastSeen: new Date(now - minsAgo * 60000),
-      score: active ? (msgs * 12) - minsAgo : 0,
-      isActive: active && minsAgo < 60,
+      lastSeen: new Date(now - mins * 60000),
+      score:    active ? (msgs * 12) - mins : 0,
+      isActive: active && mins < 60,
     };
   });
 }
 
 function getActive() {
-  return S.numbers.filter(n => S.activity[n.digits]?.isActive)
+  return S.all
+    .filter(n => S.activity[n.digits]?.isActive)
     .sort((a, b) => (S.activity[b.digits]?.score || 0) - (S.activity[a.digits]?.score || 0));
 }
 
 function timeAgo(d) {
-  const s = Math.floor((Date.now() - d.getTime()) / 1000);
+  const s = Math.floor((Date.now() - new Date(d).getTime()) / 1000);
   if (s < 60) return s + 's ago';
   const m = Math.floor(s / 60);
   if (m < 60) return m + 'm ago';
   return Math.floor(m / 60) + 'h ago';
 }
 
-// ─── RENDER ACTIVE BLOCK ───
+// ── RENDER ACTIVE BLOCK ──
 function renderActive() {
   const scroll = document.getElementById('activeScroll');
   const actives = getActive();
+
   if (!actives.length) {
-    scroll.innerHTML = `<div class="loading-nums">No active numbers found — try refreshing.</div>`;
+    scroll.innerHTML = `<div style="padding:16px;color:var(--soft);font-size:.8rem;">No active numbers found — click Refresh.</div>`;
     return;
   }
+
   scroll.innerHTML = actives.map(n => {
     const act = S.activity[n.digits];
     const sel = S.selected?.digits === n.digits;
-    const bar = Math.min(100, (act.score / 4));
-    return `
-    <div class="anc ${sel ? 'sel' : ''}">
+    const bar = Math.min(100, act.score / 4);
+    // Use data attributes + onclick via selectNum function
+    return `<div class="anc ${sel ? 'sel' : ''}" id="anc-${n.digits}">
       <div class="anc-top">
         <span class="anc-flag">${n.flag}</span>
         <span class="anc-alive"><div class="anc-dot"></div>ACTIVE</span>
@@ -401,21 +383,21 @@ function renderActive() {
       <div class="anc-num">${n.display}</div>
       <div class="anc-country">${n.label} · ${n.source}</div>
       <div class="anc-pills">
-        <span class="pill pill-cyan">📩 ${act.msgCount} msgs</span>
-        <span class="pill pill-yellow">🕐 ${timeAgo(act.lastSeen)}</span>
+        <span class="pill pill-c">📩 ${act.msgCount} msgs</span>
+        <span class="pill pill-y">🕐 ${timeAgo(act.lastSeen)}</span>
       </div>
       <div class="anc-bar"><div class="anc-bar-fill" style="width:${bar}%"></div></div>
       <div class="anc-btns">
-        <button class="anc-btn anc-sel-btn" onclick="selectNum('${n.digits}')">✔ Select</button>
-        <a class="anc-btn anc-open-btn" href="${n.url}" target="_blank">🔗 Open</a>
+        <button class="anc-btn anc-sel" onclick="selectNum('${n.digits}')">✔ Select</button>
+        <a class="anc-btn anc-open" href="${n.url}" target="_blank" rel="noopener">🔗 Open</a>
       </div>
     </div>`;
   }).join('');
 }
 
-// ─── FILTER + GRID ───
+// ── FILTER & GRID ──
 function applyFilter() {
-  S.filtered = S.filter === 'all' ? S.numbers : S.numbers.filter(n => n.country === S.filter);
+  S.filtered = S.filter === 'all' ? [...S.all] : S.all.filter(n => n.country === S.filter);
 }
 
 function filterNums(c, el) {
@@ -429,60 +411,81 @@ function filterNums(c, el) {
 function renderGrid() {
   const grid = document.getElementById('numGrid');
   if (!S.filtered.length) {
-    grid.innerHTML = `<div style="color:var(--soft);font-size:.8rem;font-family:var(--mono);padding:10px;grid-column:1/-1;">No numbers for this country. Try "All".</div>`;
+    grid.innerHTML = `<div style="color:var(--soft);font-size:.8rem;padding:10px;grid-column:1/-1;">No numbers for this country. Try "All".</div>`;
     return;
   }
   grid.innerHTML = S.filtered.map(n => {
     const act = S.activity[n.digits];
     const sel = S.selected?.digits === n.digits;
-    return `
-    <div class="nc ${sel ? 'on' : ''}">
-      ${act?.isActive ? '<span class="nc-active-dot"></span>' : ''}
+    return `<div class="nc ${sel ? 'on' : ''}">
       <div class="nc-flag">${n.flag}</div>
       <div class="nc-num">${n.display}</div>
       <div class="nc-country">${n.label}</div>
-      <div class="nc-src">${n.source}${act?.isActive ? ' · <span style="color:var(--green)">● Active</span>' : ''}</div>
+      <div class="nc-src">${n.source}</div>
+      ${act?.isActive ? `<div class="nc-active"><div class="anc-dot"></div>Active</div>` : ''}
       <div class="nc-btns">
         <button class="nc-btn nc-sel" onclick="selectNum('${n.digits}')">✔ Select</button>
-        <a class="nc-btn nc-open" href="${n.url}" target="_blank">🔗 Open</a>
+        <a class="nc-btn nc-open" href="${n.url}" target="_blank" rel="noopener">🔗 Open</a>
       </div>
     </div>`;
   }).join('');
 }
 
-// ─── SELECT NUMBER ───
+// ── SELECT NUMBER ──
 function selectNum(digits) {
-  S.selected = S.numbers.find(n => n.digits === digits);
-  if (!S.selected) return;
+  const found = S.all.find(n => n.digits === digits);
+  if (!found) { toast('Number not found', 'err'); return; }
+
+  S.selected = found;
   S.messages = [];
+
+  // Re-render to update selection highlight
   renderActive();
   renderGrid();
+
+  // Show selected bar
   document.getElementById('selBar').classList.add('show');
   document.getElementById('selNum').textContent = S.selected.display;
-  document.getElementById('selMeta').textContent = `${S.selected.label} · ${S.selected.source} · Click Copy → use to verify`;
+  document.getElementById('selMeta').textContent = `${S.selected.label} · ${S.selected.source} · Copy & use it to verify`;
+
+  // Enable buttons
   document.getElementById('refreshBtn').disabled = false;
   document.getElementById('autoBtn').disabled = false;
   document.getElementById('inboxInfo').textContent = `Inbox for ${S.selected.display}`;
+
+  // Reset inbox
   document.getElementById('msgList').innerHTML = `
-    <div class="empty"><div class="empty-ico">📡</div>
-    <p>Number selected!<br>Enter <strong>${S.selected.display}</strong> on the app,<br>then click <strong>Refresh Inbox</strong> to see your OTP.</p></div>`;
+    <div class="empty">
+      <div class="empty-ico">📡</div>
+      <p>Selected: <strong>${S.selected.display}</strong><br>
+      Enter this number on the app/website, then click <strong>Refresh Inbox</strong>.</p>
+      <a class="direct-link" href="${S.selected.url}" target="_blank" rel="noopener">
+        🔗 Also view inbox directly on ${S.selected.source}
+      </a>
+    </div>`;
+
   document.getElementById('selBar').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  toast('📱 ' + S.selected.display + ' selected!', 'ok');
+  toast('📱 Selected: ' + S.selected.display, 'ok');
 }
 
 function clearSel() {
-  S.selected = null; S.messages = []; stopAuto();
+  S.selected = null;
+  S.messages = [];
+  stopAuto();
   document.getElementById('selBar').classList.remove('show');
   document.getElementById('refreshBtn').disabled = true;
   document.getElementById('autoBtn').disabled = true;
-  document.getElementById('inboxInfo').textContent = 'Select a number above to load its inbox';
-  document.getElementById('msgList').innerHTML = `<div class="empty"><div class="empty-ico">📭</div><p>Pick a number → Enter it on the app/website → Click <strong>Refresh Inbox</strong></p></div>`;
-  renderActive(); renderGrid();
+  document.getElementById('inboxInfo').textContent = 'Select a number above to load its SMS inbox';
+  document.getElementById('msgList').innerHTML = `<div class="empty"><div class="empty-ico">📭</div><p>Pick a number → Enter it on the app → Click <strong>Refresh Inbox</strong></p></div>`;
+  renderActive();
+  renderGrid();
 }
 
 function copyNum() {
   if (!S.selected) return;
-  navigator.clipboard.writeText(S.selected.display).then(() => toast('📋 Copied: ' + S.selected.display, 'ok'));
+  navigator.clipboard.writeText(S.selected.display)
+    .then(() => toast('📋 Copied: ' + S.selected.display, 'ok'))
+    .catch(() => toast('Copy failed — select manually', 'err'));
 }
 
 function openSrc() {
@@ -490,7 +493,7 @@ function openSrc() {
   window.open(S.selected.url, '_blank');
 }
 
-// ─── LOAD INBOX (calls real Python backend) ───
+// ── LOAD INBOX (calls real backend) ──
 async function loadInbox() {
   if (!S.selected) return;
   const btn = document.getElementById('refreshBtn');
@@ -499,101 +502,130 @@ async function loadInbox() {
   txt.innerHTML = '<div class="spin"></div> Loading...';
 
   try {
-    const url = `/api/messages/${encodeURIComponent(S.selected.number)}?source=${encodeURIComponent(S.selected.source)}`;
+    const url = `/api/messages/${encodeURIComponent(S.selected.digits)}`;
     const res = await fetch(url);
     const data = await res.json();
 
-    if (data.messages && data.messages.length > 0) {
-      const wasEmpty = S.messages.length === 0;
-      const newCount = data.messages.length - S.messages.length;
-      if (newCount > 0 && !wasEmpty) toast(`📩 ${newCount} new message(s)!`, 'ok');
+    if (data.error && data.messages.length === 0) {
+      // Number not on site anymore
+      showInboxError(data.error);
+      toast('⚠️ ' + (data.error || 'No messages'), 'err');
+    } else if (data.messages && data.messages.length > 0) {
+      const prev = S.messages.length;
       S.messages = data.messages;
       renderInbox();
+      if (S.messages.length > prev && prev > 0) {
+        toast(`📩 ${S.messages.length - prev} new message(s)!`, 'ok');
+      } else {
+        toast(`📬 ${S.messages.length} message(s) loaded`, 'ok');
+      }
       // Update activity
       if (S.activity[S.selected.digits]) {
         S.activity[S.selected.digits].msgCount = data.messages.length;
         S.activity[S.selected.digits].lastSeen = new Date();
         S.activity[S.selected.digits].isActive = true;
+        S.activity[S.selected.digits].score = data.messages.length * 12;
       }
     } else {
-      // No messages yet
       document.getElementById('msgList').innerHTML = `
-        <div class="empty"><div class="empty-ico">📡</div>
-        <p>No messages yet for <strong>${S.selected.display}</strong><br>
-        Enter the number → request OTP → click Refresh again.<br>
-        <span style="font-size:.72rem;color:var(--dim);">Usually arrives in 5–30 seconds.</span></p>
-        <div style="margin-top:14px;">
-          <a class="fallback-link" href="${S.selected.url}" target="_blank">🔗 View inbox directly on ${S.selected.source}</a>
-        </div></div>`;
-      toast('ℹ️ No messages yet — try requesting OTP first', '');
+        <div class="empty">
+          <div class="empty-ico">📡</div>
+          <p>No messages yet for <strong>${S.selected.display}</strong><br>
+          Enter the number on the app → request OTP → click Refresh again.<br>
+          <span style="color:var(--dim);font-size:.75rem;">OTP usually arrives within 5–30 seconds.</span></p>
+          <a class="direct-link" href="${S.selected.url}" target="_blank" rel="noopener">
+            🔗 View inbox directly on ${S.selected.source}
+          </a>
+        </div>`;
+      toast('ℹ️ No messages yet — request OTP first', '');
     }
   } catch (e) {
+    showInboxError(e.message);
     toast('❌ Error: ' + e.message, 'err');
-    document.getElementById('msgList').innerHTML = `
-      <div class="err-box">
-        <div class="err-title">⚠️ Could not load messages</div>
-        <a class="fallback-link" href="${S.selected.url}" target="_blank">🔗 Open inbox directly on ${S.selected.source}</a>
-      </div>`;
   } finally {
     btn.disabled = false;
     txt.innerHTML = '🔄 Refresh Inbox';
   }
 }
 
-// ─── RENDER INBOX ───
-function renderInbox() {
-  const list = document.getElementById('msgList');
-  if (!S.messages.length) { list.innerHTML = `<div class="empty"><div class="empty-ico">📡</div><p>No messages yet.</p></div>`; return; }
-  list.innerHTML = S.messages.map(msg => `
-    <div class="msg-card fresh">
-      <div class="msg-hd">
-        <span class="msg-from">📨 ${msg.from}</span>
-        <span class="msg-time">${new Date(msg.time * 1000).toLocaleTimeString()}</span>
-      </div>
-      <div class="msg-body">${hlOTP(msg.body, msg.otp)}</div>
-      ${msg.otp ? `
-      <div class="otp-row">
-        <div><div class="otp-lbl">🔑 OTP DETECTED</div><div class="otp-code">${msg.otp}</div></div>
-        <button class="btn btn-green" onclick="copyOTP('${msg.otp}')">📋 Copy OTP</button>
-      </div>` : ''}
-    </div>`).join('');
+function showInboxError(msg) {
+  document.getElementById('msgList').innerHTML = `
+    <div style="background:rgba(248,113,113,.06);border:1px solid rgba(248,113,113,.2);border-radius:12px;padding:16px 18px;">
+      <div style="font-size:.8rem;color:var(--red);font-weight:700;margin-bottom:10px;">⚠️ ${msg || 'Could not load messages'}</div>
+      <p style="font-size:.78rem;color:var(--soft);margin-bottom:12px;">This number may no longer be active. Try selecting a different number from the Active block above, or open the inbox directly:</p>
+      <a class="direct-link" href="${S.selected?.url || 'https://receive-smss.com'}" target="_blank" rel="noopener">
+        🔗 Open inbox on receive-smss.com
+      </a>
+    </div>`;
 }
 
-function hlOTP(text, otp) {
-  if (!otp) return text;
-  return text.replace(new RegExp('\\b' + otp + '\\b', 'g'), `<span class="otp-chip" onclick="copyOTP('${otp}')">${otp}</span>`);
+// ── RENDER INBOX ──
+function renderInbox() {
+  const list = document.getElementById('msgList');
+  if (!S.messages.length) {
+    list.innerHTML = `<div class="empty"><div class="empty-ico">📡</div><p>No messages yet.</p></div>`;
+    return;
+  }
+  list.innerHTML = S.messages.map(msg => {
+    const otp = msg.otp;
+    const body = otp
+      ? msg.body.replace(new RegExp('\\b' + otp + '\\b', 'g'), `<span class="otp-chip" onclick="copyOTP('${otp}')">${otp}</span>`)
+      : msg.body;
+    const timeStr = msg.time_text || new Date(msg.time * 1000).toLocaleTimeString();
+    return `
+    <div class="msg-card fresh">
+      <div class="msg-hd">
+        <span class="msg-from">📨 ${msg.from || 'SMS'}</span>
+        <span class="msg-time">${timeStr}</span>
+      </div>
+      <div class="msg-body">${body}</div>
+      ${otp ? `
+      <div class="otp-row">
+        <div><div class="otp-lbl">🔑 OTP DETECTED</div><div class="otp-code">${otp}</div></div>
+        <button class="btn btn-green" onclick="copyOTP('${otp}')">📋 Copy OTP</button>
+      </div>` : ''}
+    </div>`;
+  }).join('');
 }
 
 function copyOTP(otp) {
   navigator.clipboard.writeText(otp).then(() => toast('📋 OTP copied: ' + otp, 'ok'));
 }
 
-// ─── AUTO REFRESH ───
+// ── AUTO REFRESH ──
 const AUTO_MS = 8000;
 function toggleAuto() {
   if (S.autoOn) { stopAuto(); return; }
   S.autoOn = true;
   const btn = document.getElementById('autoBtn');
-  btn.textContent = '⏸ Auto ON'; btn.style.color = 'var(--green)'; btn.style.borderColor = 'rgba(52,211,153,.38)';
+  btn.textContent = '⏸ Auto ON';
+  btn.style.color = 'var(--green)';
+  btn.style.borderColor = 'rgba(52,211,153,.38)';
   document.getElementById('autoBar').classList.add('on');
   runProg();
   S.autoIv = setInterval(() => { loadInbox(); runProg(); }, AUTO_MS);
   toast('🔄 Auto-refresh every 8s — ON', 'ok');
 }
 function stopAuto() {
-  S.autoOn = false; clearInterval(S.autoIv); clearInterval(S.autoTimer);
+  S.autoOn = false;
+  clearInterval(S.autoIv);
+  clearInterval(S.autoTimer);
   const btn = document.getElementById('autoBtn');
   if (btn) { btn.textContent = '▶ Auto'; btn.style.color = ''; btn.style.borderColor = ''; }
   document.getElementById('autoBar').classList.remove('on');
 }
 function runProg() {
-  S.autoProgress = 100; clearInterval(S.autoTimer);
+  S.autoProgress = 100;
+  clearInterval(S.autoTimer);
   const fill = document.getElementById('autoFill');
   const step = 100 / (AUTO_MS / 100);
-  S.autoTimer = setInterval(() => { S.autoProgress = Math.max(0, S.autoProgress - step); fill.style.width = S.autoProgress + '%'; }, 100);
+  S.autoTimer = setInterval(() => {
+    S.autoProgress = Math.max(0, S.autoProgress - step);
+    fill.style.width = S.autoProgress + '%';
+  }, 100);
 }
 
-// ─── TOAST ───
+// ── TOAST ──
 function toast(msg, type = '') {
   const wrap = document.getElementById('toasts');
   const el = document.createElement('div');
@@ -603,12 +635,10 @@ function toast(msg, type = '') {
   setTimeout(() => el.remove(), 3500);
 }
 
-// ─── INIT ───
+// ── INIT ──
 loadNumbers();
-// Refresh numbers every 5 min
-setInterval(() => loadNumbers(), 5 * 60 * 1000);
-// Update activity display every 30s
-setInterval(() => { renderActive(); }, 30000);
+setInterval(loadNumbers, 5 * 60 * 1000);         // refresh numbers every 5min
+setInterval(renderActive, 30 * 1000);             // re-render active every 30s
 </script>
-</body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a02f678348f43a14',t:'MTc3OTk5MzgwMA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
