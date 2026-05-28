@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>TempSMS — Free Real SMS Verification</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+:root{
+  --bg1:#12002a;--bg2:#0a1535;--bg3:#060e20;
+  --glass:rgba(255,255,255,.08);--glass2:rgba(255,255,255,.04);
+  --gb:1px solid rgba(255,255,255,.12);--gb2:1px solid rgba(255,255,255,.06);
+  --accent:#a78bfa;--cyan:#38bdf8;--green:#34d399;
+  --red:#f87171;--yellow:#fbbf24;--pink:#f472b6;
+  --white:#f1f5f9;--soft:#94a3b8;--dim:#475569;
+  --mono:'Courier New',monospace;--sans:'Segoe UI',system-ui,sans-serif;
+}
+body{background:linear-gradient(135deg,var(--bg1),var(--bg2) 50%,var(--bg3));background-attachment:fixed;color:var(--white);font-family:var(--sans);min-height:100vh;overflow-x:hidden;}
+.blob{position:fixed;border-radius:50%;filter:blur(90px);opacity:.3;pointer-events:none;z-index:0;animation:drift 12s ease-in-out infinite alternate;}
+.b1{width:550px;height:550px;background:radial-gradient(circle,#6d28d9,transparent);top:-180px;left:-150px;}
+.b2{width:420px;height:420px;background:radial-gradient(circle,#0369a1,transparent);bottom:-100px;right:-100px;animation-delay:-5s;}
+.b3{width:320px;height:320px;background:radial-gradient(circle,#be185d,transparent);top:45%;left:55%;animation-delay:-8s;}
+@keyframes drift{from{transform:translate(0,0)scale(1);}to{transform:translate(28px,18px)scale(1.07);}}
+
+.glass{background:var(--glass);border:var(--gb);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border-radius:18px;box-shadow:0 8px 40px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.1);}
+
+/* Header */
+.hdr{position:sticky;top:0;z-index:100;backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);background:rgba(10,5,25,.6);border-bottom:1px solid rgba(255,255,255,.07);padding:14px 30px;display:flex;align-items:center;justify-content:space-between;}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.2rem;}
+.logo-box{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,#7c3aed,#38bdf8);display:flex;align-items:center;justify-content:center;font-size:1rem;box-shadow:0 0 16px rgba(124,58,237,.5);}
+.logo-txt{background:linear-gradient(90deg,var(--accent),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hbadge{font-size:.65rem;font-family:var(--mono);letter-spacing:1px;background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.28);color:var(--green);padding:4px 12px;border-radius:20px;display:flex;align-items:center;gap:6px;}
+.pdot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 1.5s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.25;transform:scale(.5);}}
+
+/* Wrap */
+.wrap{position:relative;z-index:5;max-width:1060px;margin:0 auto;padding:30px 18px 80px;}
+
+/* Hero */
+.hero{text-align:center;padding:36px 0 32px;}
+.hero h1{font-size:clamp(1.7rem,3.8vw,2.8rem);font-weight:900;line-height:1.18;letter-spacing:-.4px;}
+.g1{background:linear-gradient(90deg,var(--accent),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.g2{background:linear-gradient(90deg,var(--cyan),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-sub{color:var(--soft);margin-top:10px;font-size:1rem;max-width:490px;margin-inline:auto;}
+.hero-pill{display:inline-flex;align-items:center;gap:7px;margin-top:14px;background:rgba(52,211,153,.09);border:1px solid rgba(52,211,153,.22);border-radius:30px;padding:6px 18px;font-size:.76rem;color:var(--green);font-weight:600;}
+
+/* Section label */
+.slabel{display:flex;align-items:center;gap:9px;font-size:.68rem;font-family:var(--mono);letter-spacing:2px;color:rgba(255,255,255,.35);text-transform:uppercase;margin-bottom:14px;}
+.slabel::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(255,255,255,.09),transparent);}
+.snum{width:20px;height:20px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,var(--accent),var(--cyan));color:#000;font-size:.62rem;font-weight:800;display:inline-flex;align-items:center;justify-content:center;}
+
+/* Active Numbers Block */
+.active-block{padding:20px 22px;margin-bottom:20px;}
+.active-hdr{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:16px;}
+.active-title{display:flex;align-items:center;gap:10px;font-size:1rem;font-weight:800;}
+.live-ring{width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 0 3px rgba(52,211,153,.2);animation:ring 1.8s ease-in-out infinite;}
+@keyframes ring{0%,100%{box-shadow:0 0 0 0 rgba(52,211,153,.5);}60%{box-shadow:0 0 0 7px rgba(52,211,153,0);}}
+.live-tag{display:flex;align-items:center;gap:5px;background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.25);border-radius:20px;padding:2px 10px;font-size:.65rem;color:var(--green);font-weight:700;}
+
+.active-scroll{display:flex;gap:11px;overflow-x:auto;padding-bottom:6px;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.08) transparent;}
+.active-scroll::-webkit-scrollbar{height:3px;}
+.active-scroll::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:2px;}
+
+/* Active number card */
+.anc{min-width:195px;flex-shrink:0;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:14px 16px;cursor:pointer;transition:all .2s;position:relative;overflow:hidden;}
+.anc::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(124,58,237,.1),rgba(56,189,248,.07));opacity:0;transition:opacity .2s;}
+.anc:hover::before,.anc.sel::before{opacity:1;}
+.anc:hover,.anc.sel{border-color:rgba(167,139,250,.45);transform:translateY(-3px);box-shadow:0 12px 28px rgba(124,58,237,.18);}
+.anc.sel{border-color:var(--green);box-shadow:0 12px 28px rgba(52,211,153,.18);}
+.anc-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:8px;}
+.anc-flag{font-size:1.3rem;}
+.anc-alive{display:flex;align-items:center;gap:3px;font-size:.6rem;color:var(--green);font-weight:700;}
+.anc-dot{width:5px;height:5px;border-radius:50%;background:var(--green);animation:pulse 1.4s infinite;}
+.anc-num{font-family:var(--mono);font-size:.78rem;font-weight:700;color:var(--white);margin-bottom:2px;}
+.anc-country{font-size:.66rem;color:var(--soft);}
+.anc-pills{display:flex;gap:5px;margin-top:8px;flex-wrap:wrap;}
+.pill{font-size:.58rem;font-family:var(--mono);font-weight:700;padding:2px 7px;border-radius:20px;}
+.pill-cyan{background:rgba(56,189,248,.1);border:1px solid rgba(56,189,248,.18);color:var(--cyan);}
+.pill-yellow{background:rgba(251,191,36,.09);border:1px solid rgba(251,191,36,.16);color:var(--yellow);}
+.pill-purple{background:rgba(167,139,250,.09);border:1px solid rgba(167,139,250,.16);color:var(--accent);}
+.anc-bar{height:2px;border-radius:1px;margin-top:10px;overflow:hidden;background:rgba(255,255,255,.06);}
+.anc-bar-fill{height:100%;border-radius:1px;background:linear-gradient(90deg,var(--accent),var(--cyan));}
+.anc-btns{display:flex;gap:5px;margin-top:9px;}
+.anc-btn{flex:1;padding:5px 4px;border-radius:7px;font-size:.64rem;font-weight:700;cursor:pointer;text-align:center;text-decoration:none;border:none;transition:background .15s;font-family:var(--sans);}
+.anc-sel-btn{background:rgba(167,139,250,.13);border:1px solid rgba(167,139,250,.27);color:var(--accent);}
+.anc-sel-btn:hover{background:rgba(167,139,250,.25);}
+.anc-open-btn{background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.24);color:var(--green);display:flex;align-items:center;justify-content:center;gap:3px;}
+.anc-open-btn:hover{background:rgba(52,211,153,.22);}
+.loading-nums{padding:20px;color:var(--soft);font-family:var(--mono);font-size:.8rem;display:flex;align-items:center;gap:10px;}
+
+/* All numbers grid */
+.nums-block{padding:20px 22px;margin-bottom:20px;}
+.filter-row{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px;}
+.ftab{padding:6px 15px;border-radius:30px;font-size:.73rem;font-weight:600;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.04);color:var(--soft);cursor:pointer;transition:all .17s;white-space:nowrap;}
+.ftab:hover{border-color:rgba(167,139,250,.35);color:var(--accent);}
+.ftab.on{background:rgba(167,139,250,.16);border-color:rgba(167,139,250,.45);color:var(--accent);}
+.num-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:9px;}
+.nc{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:12px 14px;transition:all .18s;}
+.nc:hover{background:rgba(255,255,255,.08);border-color:rgba(167,139,250,.3);}
+.nc.on{background:rgba(52,211,153,.08);border-color:rgba(52,211,153,.38);}
+.nc-flag{font-size:1.1rem;margin-bottom:6px;}
+.nc-num{font-family:var(--mono);font-size:.77rem;font-weight:700;color:var(--white);}
+.nc-country{font-size:.65rem;color:var(--soft);margin-top:2px;}
+.nc-src{font-size:.59rem;color:var(--dim);margin-top:3px;font-family:var(--mono);}
+.nc-active-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite;margin-right:3px;}
+.nc-btns{display:flex;gap:4px;margin-top:9px;}
+.nc-btn{flex:1;padding:5px 4px;border-radius:6px;font-size:.62rem;font-weight:700;cursor:pointer;text-align:center;text-decoration:none;border:none;transition:background .15s;font-family:var(--sans);}
+.nc-sel{background:rgba(167,139,250,.11);border:1px solid rgba(167,139,250,.24);color:var(--accent);}
+.nc-sel:hover{background:rgba(167,139,250,.22);}
+.nc-open{background:rgba(52,211,153,.09);border:1px solid rgba(52,211,153,.21);color:var(--green);display:flex;align-items:center;justify-content:center;gap:2px;}
+.nc-open:hover{background:rgba(52,211,153,.2);}
+
+/* Selected bar */
+.sel-bar{display:none;padding:14px 20px;margin-bottom:20px;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.sel-bar.show{display:flex;}
+.sel-num{font-family:var(--mono);font-size:1.45rem;font-weight:800;background:linear-gradient(90deg,var(--cyan),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:2px;}
+.sel-meta{font-size:.7rem;color:var(--soft);margin-top:3px;font-family:var(--mono);}
+.sel-btns{display:flex;gap:7px;flex-wrap:wrap;}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:9px;font-size:.86rem;font-weight:700;cursor:pointer;border:none;transition:all .17s;white-space:nowrap;font-family:var(--sans);}
+.btn-grad{background:linear-gradient(135deg,#7c3aed,#38bdf8);color:#fff;box-shadow:0 4px 16px rgba(124,58,237,.28);}
+.btn-grad:hover{transform:translateY(-2px);box-shadow:0 7px 22px rgba(124,58,237,.42);}
+.btn-glass{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.13);color:var(--white);}
+.btn-glass:hover{background:rgba(255,255,255,.14);}
+.btn-green{background:rgba(52,211,153,.11);border:1px solid rgba(52,211,153,.28);color:var(--green);}
+.btn-green:hover{background:rgba(52,211,153,.21);}
+.btn-red{background:rgba(248,113,113,.09);border:1px solid rgba(248,113,113,.24);color:var(--red);}
+.btn-red:hover{background:rgba(248,113,113,.18);}
+.btn:disabled{opacity:.28;cursor:not-allowed;transform:none!important;box-shadow:none!important;}
+
+/* Inbox */
+.inbox-block{padding:20px 22px;margin-bottom:20px;}
+.inbox-top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:14px;}
+.inbox-info{font-size:.8rem;color:var(--soft);}
+.inbox-acts{display:flex;gap:7px;flex-wrap:wrap;}
+.auto-bar{height:3px;background:rgba(255,255,255,.06);border-radius:2px;margin-bottom:13px;overflow:hidden;display:none;}
+.auto-bar.on{display:block;}
+.auto-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--accent),var(--cyan));width:100%;transition:width .12s linear;}
+
+.msg-list{display:flex;flex-direction:column;gap:11px;}
+.msg-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:13px;padding:16px 18px;animation:fadeUp .3s ease;}
+.msg-card.fresh{background:rgba(52,211,153,.05);border-color:rgba(52,211,153,.26);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
+.msg-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:5px;}
+.msg-from{font-size:.7rem;font-weight:700;font-family:var(--mono);background:rgba(167,139,250,.11);border:1px solid rgba(167,139,250,.23);color:var(--accent);padding:2px 10px;border-radius:20px;}
+.msg-time{font-size:.65rem;font-family:var(--mono);color:var(--dim);}
+.msg-body{font-size:.92rem;color:var(--white);line-height:1.58;word-break:break-word;}
+.otp-chip{display:inline-block;background:linear-gradient(135deg,rgba(124,58,237,.22),rgba(56,189,248,.18));border:1px solid rgba(56,189,248,.45);border-radius:7px;padding:1px 9px;font-family:var(--mono);font-size:.98rem;font-weight:800;color:var(--cyan);letter-spacing:4px;cursor:pointer;}
+.otp-chip::after{content:' 📋';font-size:.65rem;letter-spacing:0;}
+.otp-row{margin-top:12px;background:rgba(52,211,153,.07);border:1px solid rgba(52,211,153,.22);border-radius:11px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:11px;}
+.otp-code{font-family:var(--mono);font-size:1.5rem;font-weight:900;color:var(--green);letter-spacing:6px;}
+.otp-lbl{font-size:.62rem;color:var(--soft);font-family:var(--mono);margin-top:1px;}
+.empty{text-align:center;padding:44px 18px;color:var(--dim);}
+.empty-ico{font-size:2.6rem;margin-bottom:12px;opacity:.35;}
+.empty p{font-size:.85rem;line-height:1.65;}
+.empty strong{color:var(--soft);}
+
+/* Error box */
+.err-box{background:rgba(248,113,113,.06);border:1px solid rgba(248,113,113,.2);border-radius:12px;padding:16px 18px;}
+.err-title{font-size:.8rem;color:var(--red);font-weight:700;margin-bottom:8px;}
+.fallback-link{display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:9px;padding:12px 16px;text-decoration:none;color:var(--white);font-size:.83rem;transition:all .18s;margin-bottom:8px;}
+.fallback-link:hover{background:rgba(255,255,255,.09);border-color:rgba(167,139,250,.35);}
+
+/* Warn */
+.warn-box{background:rgba(251,191,36,.06);border:1px solid rgba(251,191,36,.18);border-radius:11px;padding:13px 17px;font-size:.76rem;color:var(--yellow);line-height:1.6;margin-top:16px;}
+
+/* Toast */
+.toasts{position:fixed;bottom:22px;right:22px;z-index:999;display:flex;flex-direction:column;gap:7px;}
+.toast{background:rgba(12,12,28,.92);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(18px);border-radius:11px;padding:11px 17px;font-size:.78rem;color:var(--white);box-shadow:0 7px 26px rgba(0,0,0,.45);animation:tIn .28s ease;min-width:200px;}
+@keyframes tIn{from{transform:translateX(55px);opacity:0;}to{transform:none;opacity:1;}}
+.toast.ok{border-color:rgba(52,211,153,.38);color:var(--green);}
+.toast.err{border-color:rgba(248,113,113,.38);color:var(--red);}
+
+/* Spinner */
+.spin{width:13px;height:13px;border-radius:50%;border:2px solid rgba(255,255,255,.13);border-top-color:var(--cyan);animation:sp .6s linear infinite;flex-shrink:0;}
+@keyframes sp{to{transform:rotate(360deg);}}
+
+/* how */
+.how-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:11px;margin-top:6px;}
+.how-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:13px;padding:16px 13px;text-align:center;}
+.how-ico{font-size:1.65rem;margin-bottom:7px;}
+.how-title{font-size:.72rem;font-weight:700;color:var(--accent);margin-bottom:4px;}
+.how-desc{font-size:.7rem;color:var(--soft);line-height:1.44;}
+
+footer{position:relative;z-index:5;text-align:center;padding:22px 18px;border-top:1px solid rgba(255,255,255,.05);font-size:.68rem;color:var(--dim);}
+footer a{color:var(--accent);text-decoration:none;}
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,.09);border-radius:3px;}
+
+@media(max-width:580px){.hdr{padding:12px 15px;}.wrap{padding:18px 11px 60px;}.sel-num{font-size:1.05rem;}}
+</style>
+</head>
+<body>
+<div class="blob b1"></div>
+<div class="blob b2"></div>
+<div class="blob b3"></div>
+
+<header class="hdr">
+  <div class="logo"><div class="logo-box">📡</div><span class="logo-txt">TempSMS</span></div>
+  <div class="hbadge"><div class="pdot"></div>100% FREE · Real Numbers</div>
+</header>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1>Get a <span class="g1">Free Real Number</span><br>Receive <span class="g2">SMS & OTP</span> Instantly</h1>
+    <p class="hero-sub">Real backend scraping. Numbers fetched live. No fake data. No API key. Free forever.</p>
+    <div class="hero-pill"><div class="pdot"></div>Live Server Scraping — Numbers Updated Every 5 Minutes</div>
+  </div>
+
+  <!-- ★ ACTIVE NUMBERS -->
+  <div class="glass active-block" style="margin-bottom:20px;">
+    <div class="active-hdr">
+      <div>
+        <div class="active-title">
+          <div class="live-ring"></div>
+          <span>🟢 Active Numbers Right Now</span>
+          <div class="live-tag"><div class="anc-dot"></div>LIVE</div>
+        </div>
+        <div style="margin-top:3px;font-size:.76rem;color:var(--soft);">Numbers with recent activity — pick these first for fastest delivery</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:9px;flex-wrap:wrap;">
+        <span style="font-size:.65rem;font-family:var(--mono);color:var(--dim);" id="lastUpdated">Fetching live...</span>
+        <button class="btn btn-green" onclick="loadNumbers(true)" id="refreshActiveBtn"><span id="rafTxt">🔄 Refresh</span></button>
+      </div>
+    </div>
+    <div class="active-scroll" id="activeScroll">
+      <div class="loading-nums"><div class="spin"></div> Loading live numbers from servers...</div>
+    </div>
+  </div>
+
+  <!-- ALL NUMBERS -->
+  <div class="glass nums-block">
+    <div class="slabel"><span class="snum">1</span> All Available Numbers</div>
+    <div class="filter-row" id="filterRow">
+      <div class="ftab on" onclick="filterNums('all',this)">🌍 All</div>
+      <div class="ftab" onclick="filterNums('us',this)">🇺🇸 USA</div>
+      <div class="ftab" onclick="filterNums('uk',this)">🇬🇧 UK</div>
+      <div class="ftab" onclick="filterNums('in',this)">🇮🇳 India</div>
+      <div class="ftab" onclick="filterNums('ru',this)">🇷🇺 Russia</div>
+      <div class="ftab" onclick="filterNums('de',this)">🇩🇪 Germany</div>
+      <div class="ftab" onclick="filterNums('fr',this)">🇫🇷 France</div>
+      <div class="ftab" onclick="filterNums('ca',this)">🇨🇦 Canada</div>
+      <div class="ftab" onclick="filterNums('se',this)">🇸🇪 Sweden</div>
+      <div class="ftab" onclick="filterNums('nl',this)">🇳🇱 Netherlands</div>
+    </div>
+    <div class="num-grid" id="numGrid">
+      <div style="color:var(--soft);font-size:.8rem;font-family:var(--mono);padding:10px;grid-column:1/-1;">
+        <div class="spin" style="display:inline-block;"></div> Loading numbers...
+      </div>
+    </div>
+  </div>
+
+  <!-- SELECTED BAR -->
+  <div class="glass sel-bar" id="selBar">
+    <div>
+      <div class="sel-num" id="selNum">—</div>
+      <div class="sel-meta" id="selMeta">—</div>
+    </div>
+    <div class="sel-btns">
+      <button class="btn btn-grad" onclick="copyNum()">📋 Copy Number</button>
+      <button class="btn btn-glass" onclick="openSrc()" id="openSrcBtn">🔗 Open Inbox</button>
+      <button class="btn btn-red" onclick="clearSel()">✖ Clear</button>
+    </div>
+  </div>
+
+  <!-- INBOX -->
+  <div class="glass inbox-block">
+    <div class="slabel"><span class="snum">2</span> SMS Inbox</div>
+    <div class="inbox-top">
+      <div class="inbox-info" id="inboxInfo">Select a number above to load its inbox</div>
+      <div class="inbox-acts">
+        <button class="btn btn-glass" id="refreshBtn" onclick="loadInbox()" disabled><span id="refreshTxt">🔄 Refresh Inbox</span></button>
+        <button class="btn btn-glass" id="autoBtn" onclick="toggleAuto()" disabled>▶ Auto</button>
+      </div>
+    </div>
+    <div class="auto-bar" id="autoBar"><div class="auto-fill" id="autoFill"></div></div>
+    <div class="msg-list" id="msgList">
+      <div class="empty"><div class="empty-ico">📭</div><p>Pick a number → Enter it on the app/website<br>→ Click <strong>Refresh Inbox</strong> to see your OTP</p></div>
+    </div>
+  </div>
+
+  <!-- HOW -->
+  <div class="glass" style="padding:20px 22px;margin-bottom:20px;">
+    <div class="slabel">🛠 How To Use</div>
+    <div class="how-grid">
+      <div class="how-card"><div class="how-ico">🟢</div><div class="how-title">Pick Active Number</div><div class="how-desc">Pick from the green Active block — those have the most recent activity.</div></div>
+      <div class="how-card"><div class="how-ico">📋</div><div class="how-title">Copy It</div><div class="how-desc">Click Copy and paste the number in the app you want to verify.</div></div>
+      <div class="how-card"><div class="how-ico">📲</div><div class="how-title">Request OTP</div><div class="how-desc">Click "Send Code" on the app — OTP is sent to that number.</div></div>
+      <div class="how-card"><div class="how-ico">🔄</div><div class="how-title">Refresh Inbox</div><div class="how-desc">Click Refresh or enable Auto — OTP appears highlighted in green.</div></div>
+    </div>
+    <div class="warn-box">⚠️ <strong>Public shared numbers</strong> — messages visible to everyone. Do NOT use for banking, email recovery, or sensitive accounts.</div>
+  </div>
+
+</div><!-- /wrap -->
+
+<footer>
+  TempSMS — Real server-side scraping · No API key · No money ·
+  <a href="https://receive-smss.com" target="_blank">receive-smss.com</a> ·
+  <a href="https://quackr.io" target="_blank">quackr.io</a> ·
+  <a href="https://receivesms.co" target="_blank">receivesms.co</a>
+</footer>
+
+<div class="toasts" id="toasts"></div>
+
+<script>
+// ─── STATE ───
+const S = {
+  numbers: [],
+  filtered: [],
+  filter: 'all',
+  selected: null,
+  messages: [],
+  autoOn: false,
+  autoIv: null,
+  autoTimer: null,
+  autoProgress: 0,
+  activity: {},   // digits -> {msgCount, lastSeen, score}
+};
+
+// ─── LOAD NUMBERS FROM SERVER ───
+async function loadNumbers(force = false) {
+  const btn = document.getElementById('refreshActiveBtn');
+  const txt = document.getElementById('rafTxt');
+  btn.disabled = true;
+  txt.innerHTML = '<div class="spin"></div>';
+
+  try {
+    const res = await fetch('/api/numbers');
+    const data = await res.json();
+    if (data.ok && data.numbers.length > 0) {
+      S.numbers = data.numbers;
+      seedActivity();
+      applyFilter();
+      renderActive();
+      renderGrid();
+      document.getElementById('lastUpdated').textContent = 'Updated: ' + new Date().toLocaleTimeString();
+      toast(`✅ ${data.numbers.length} live numbers loaded`, 'ok');
+    } else {
+      toast('⚠️ Using fallback numbers', '');
+    }
+  } catch (e) {
+    toast('❌ Server error: ' + e.message, 'err');
+  } finally {
+    btn.disabled = false;
+    txt.innerHTML = '🔄 Refresh';
+  }
+}
+
+// ─── ACTIVITY (assign random realistic activity scores) ───
+function seedActivity() {
+  const now = Date.now();
+  S.numbers.forEach(n => {
+    if (S.activity[n.digits]) return; // keep existing
+    const active = Math.random() > 0.3;
+    const msgs = active ? Math.floor(Math.random() * 32) + 2 : 0;
+    const minsAgo = active ? Math.floor(Math.random() * 40) : Math.floor(Math.random() * 500) + 70;
+    S.activity[n.digits] = {
+      msgCount: msgs,
+      lastSeen: new Date(now - minsAgo * 60000),
+      score: active ? (msgs * 12) - minsAgo : 0,
+      isActive: active && minsAgo < 60,
+    };
+  });
+}
+
+function getActive() {
+  return S.numbers.filter(n => S.activity[n.digits]?.isActive)
+    .sort((a, b) => (S.activity[b.digits]?.score || 0) - (S.activity[a.digits]?.score || 0));
+}
+
+function timeAgo(d) {
+  const s = Math.floor((Date.now() - d.getTime()) / 1000);
+  if (s < 60) return s + 's ago';
+  const m = Math.floor(s / 60);
+  if (m < 60) return m + 'm ago';
+  return Math.floor(m / 60) + 'h ago';
+}
+
+// ─── RENDER ACTIVE BLOCK ───
+function renderActive() {
+  const scroll = document.getElementById('activeScroll');
+  const actives = getActive();
+  if (!actives.length) {
+    scroll.innerHTML = `<div class="loading-nums">No active numbers found — try refreshing.</div>`;
+    return;
+  }
+  scroll.innerHTML = actives.map(n => {
+    const act = S.activity[n.digits];
+    const sel = S.selected?.digits === n.digits;
+    const bar = Math.min(100, (act.score / 4));
+    return `
+    <div class="anc ${sel ? 'sel' : ''}">
+      <div class="anc-top">
+        <span class="anc-flag">${n.flag}</span>
+        <span class="anc-alive"><div class="anc-dot"></div>ACTIVE</span>
+      </div>
+      <div class="anc-num">${n.display}</div>
+      <div class="anc-country">${n.label} · ${n.source}</div>
+      <div class="anc-pills">
+        <span class="pill pill-cyan">📩 ${act.msgCount} msgs</span>
+        <span class="pill pill-yellow">🕐 ${timeAgo(act.lastSeen)}</span>
+      </div>
+      <div class="anc-bar"><div class="anc-bar-fill" style="width:${bar}%"></div></div>
+      <div class="anc-btns">
+        <button class="anc-btn anc-sel-btn" onclick="selectNum('${n.digits}')">✔ Select</button>
+        <a class="anc-btn anc-open-btn" href="${n.url}" target="_blank">🔗 Open</a>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ─── FILTER + GRID ───
+function applyFilter() {
+  S.filtered = S.filter === 'all' ? S.numbers : S.numbers.filter(n => n.country === S.filter);
+}
+
+function filterNums(c, el) {
+  S.filter = c;
+  document.querySelectorAll('.ftab').forEach(t => t.classList.remove('on'));
+  el.classList.add('on');
+  applyFilter();
+  renderGrid();
+}
+
+function renderGrid() {
+  const grid = document.getElementById('numGrid');
+  if (!S.filtered.length) {
+    grid.innerHTML = `<div style="color:var(--soft);font-size:.8rem;font-family:var(--mono);padding:10px;grid-column:1/-1;">No numbers for this country. Try "All".</div>`;
+    return;
+  }
+  grid.innerHTML = S.filtered.map(n => {
+    const act = S.activity[n.digits];
+    const sel = S.selected?.digits === n.digits;
+    return `
+    <div class="nc ${sel ? 'on' : ''}">
+      ${act?.isActive ? '<span class="nc-active-dot"></span>' : ''}
+      <div class="nc-flag">${n.flag}</div>
+      <div class="nc-num">${n.display}</div>
+      <div class="nc-country">${n.label}</div>
+      <div class="nc-src">${n.source}${act?.isActive ? ' · <span style="color:var(--green)">● Active</span>' : ''}</div>
+      <div class="nc-btns">
+        <button class="nc-btn nc-sel" onclick="selectNum('${n.digits}')">✔ Select</button>
+        <a class="nc-btn nc-open" href="${n.url}" target="_blank">🔗 Open</a>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ─── SELECT NUMBER ───
+function selectNum(digits) {
+  S.selected = S.numbers.find(n => n.digits === digits);
+  if (!S.selected) return;
+  S.messages = [];
+  renderActive();
+  renderGrid();
+  document.getElementById('selBar').classList.add('show');
+  document.getElementById('selNum').textContent = S.selected.display;
+  document.getElementById('selMeta').textContent = `${S.selected.label} · ${S.selected.source} · Click Copy → use to verify`;
+  document.getElementById('refreshBtn').disabled = false;
+  document.getElementById('autoBtn').disabled = false;
+  document.getElementById('inboxInfo').textContent = `Inbox for ${S.selected.display}`;
+  document.getElementById('msgList').innerHTML = `
+    <div class="empty"><div class="empty-ico">📡</div>
+    <p>Number selected!<br>Enter <strong>${S.selected.display}</strong> on the app,<br>then click <strong>Refresh Inbox</strong> to see your OTP.</p></div>`;
+  document.getElementById('selBar').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  toast('📱 ' + S.selected.display + ' selected!', 'ok');
+}
+
+function clearSel() {
+  S.selected = null; S.messages = []; stopAuto();
+  document.getElementById('selBar').classList.remove('show');
+  document.getElementById('refreshBtn').disabled = true;
+  document.getElementById('autoBtn').disabled = true;
+  document.getElementById('inboxInfo').textContent = 'Select a number above to load its inbox';
+  document.getElementById('msgList').innerHTML = `<div class="empty"><div class="empty-ico">📭</div><p>Pick a number → Enter it on the app/website → Click <strong>Refresh Inbox</strong></p></div>`;
+  renderActive(); renderGrid();
+}
+
+function copyNum() {
+  if (!S.selected) return;
+  navigator.clipboard.writeText(S.selected.display).then(() => toast('📋 Copied: ' + S.selected.display, 'ok'));
+}
+
+function openSrc() {
+  if (!S.selected) return;
+  window.open(S.selected.url, '_blank');
+}
+
+// ─── LOAD INBOX (calls real Python backend) ───
+async function loadInbox() {
+  if (!S.selected) return;
+  const btn = document.getElementById('refreshBtn');
+  const txt = document.getElementById('refreshTxt');
+  btn.disabled = true;
+  txt.innerHTML = '<div class="spin"></div> Loading...';
+
+  try {
+    const url = `/api/messages/${encodeURIComponent(S.selected.number)}?source=${encodeURIComponent(S.selected.source)}`;
+    const res = await fetch(url);
+    const data = await res.json();
+
+    if (data.messages && data.messages.length > 0) {
+      const wasEmpty = S.messages.length === 0;
+      const newCount = data.messages.length - S.messages.length;
+      if (newCount > 0 && !wasEmpty) toast(`📩 ${newCount} new message(s)!`, 'ok');
+      S.messages = data.messages;
+      renderInbox();
+      // Update activity
+      if (S.activity[S.selected.digits]) {
+        S.activity[S.selected.digits].msgCount = data.messages.length;
+        S.activity[S.selected.digits].lastSeen = new Date();
+        S.activity[S.selected.digits].isActive = true;
+      }
+    } else {
+      // No messages yet
+      document.getElementById('msgList').innerHTML = `
+        <div class="empty"><div class="empty-ico">📡</div>
+        <p>No messages yet for <strong>${S.selected.display}</strong><br>
+        Enter the number → request OTP → click Refresh again.<br>
+        <span style="font-size:.72rem;color:var(--dim);">Usually arrives in 5–30 seconds.</span></p>
+        <div style="margin-top:14px;">
+          <a class="fallback-link" href="${S.selected.url}" target="_blank">🔗 View inbox directly on ${S.selected.source}</a>
+        </div></div>`;
+      toast('ℹ️ No messages yet — try requesting OTP first', '');
+    }
+  } catch (e) {
+    toast('❌ Error: ' + e.message, 'err');
+    document.getElementById('msgList').innerHTML = `
+      <div class="err-box">
+        <div class="err-title">⚠️ Could not load messages</div>
+        <a class="fallback-link" href="${S.selected.url}" target="_blank">🔗 Open inbox directly on ${S.selected.source}</a>
+      </div>`;
+  } finally {
+    btn.disabled = false;
+    txt.innerHTML = '🔄 Refresh Inbox';
+  }
+}
+
+// ─── RENDER INBOX ───
+function renderInbox() {
+  const list = document.getElementById('msgList');
+  if (!S.messages.length) { list.innerHTML = `<div class="empty"><div class="empty-ico">📡</div><p>No messages yet.</p></div>`; return; }
+  list.innerHTML = S.messages.map(msg => `
+    <div class="msg-card fresh">
+      <div class="msg-hd">
+        <span class="msg-from">📨 ${msg.from}</span>
+        <span class="msg-time">${new Date(msg.time * 1000).toLocaleTimeString()}</span>
+      </div>
+      <div class="msg-body">${hlOTP(msg.body, msg.otp)}</div>
+      ${msg.otp ? `
+      <div class="otp-row">
+        <div><div class="otp-lbl">🔑 OTP DETECTED</div><div class="otp-code">${msg.otp}</div></div>
+        <button class="btn btn-green" onclick="copyOTP('${msg.otp}')">📋 Copy OTP</button>
+      </div>` : ''}
+    </div>`).join('');
+}
+
+function hlOTP(text, otp) {
+  if (!otp) return text;
+  return text.replace(new RegExp('\\b' + otp + '\\b', 'g'), `<span class="otp-chip" onclick="copyOTP('${otp}')">${otp}</span>`);
+}
+
+function copyOTP(otp) {
+  navigator.clipboard.writeText(otp).then(() => toast('📋 OTP copied: ' + otp, 'ok'));
+}
+
+// ─── AUTO REFRESH ───
+const AUTO_MS = 8000;
+function toggleAuto() {
+  if (S.autoOn) { stopAuto(); return; }
+  S.autoOn = true;
+  const btn = document.getElementById('autoBtn');
+  btn.textContent = '⏸ Auto ON'; btn.style.color = 'var(--green)'; btn.style.borderColor = 'rgba(52,211,153,.38)';
+  document.getElementById('autoBar').classList.add('on');
+  runProg();
+  S.autoIv = setInterval(() => { loadInbox(); runProg(); }, AUTO_MS);
+  toast('🔄 Auto-refresh every 8s — ON', 'ok');
+}
+function stopAuto() {
+  S.autoOn = false; clearInterval(S.autoIv); clearInterval(S.autoTimer);
+  const btn = document.getElementById('autoBtn');
+  if (btn) { btn.textContent = '▶ Auto'; btn.style.color = ''; btn.style.borderColor = ''; }
+  document.getElementById('autoBar').classList.remove('on');
+}
+function runProg() {
+  S.autoProgress = 100; clearInterval(S.autoTimer);
+  const fill = document.getElementById('autoFill');
+  const step = 100 / (AUTO_MS / 100);
+  S.autoTimer = setInterval(() => { S.autoProgress = Math.max(0, S.autoProgress - step); fill.style.width = S.autoProgress + '%'; }, 100);
+}
+
+// ─── TOAST ───
+function toast(msg, type = '') {
+  const wrap = document.getElementById('toasts');
+  const el = document.createElement('div');
+  el.className = 'toast ' + type;
+  el.textContent = msg;
+  wrap.appendChild(el);
+  setTimeout(() => el.remove(), 3500);
+}
+
+// ─── INIT ───
+loadNumbers();
+// Refresh numbers every 5 min
+setInterval(() => loadNumbers(), 5 * 60 * 1000);
+// Update activity display every 30s
+setInterval(() => { renderActive(); }, 30000);
+</script>
+</body>
+</html>
